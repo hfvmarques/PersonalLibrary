@@ -41,18 +41,16 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a
-          >
+          <%= link_to admins_backoffice_welcome_index_path, class:"nav-link" do %>
+            <i class="fas fa-fw fa-tachometer-alt"></i> Dashboard
+          <% end %>
         </li>
 
         <!-- Nav Item - Administrators -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-users fa-users-alt"></i>
-            <span>Administradores</span></a
-          >
+          <%= link_to admins_backoffice_admins_index_path, class:"nav-link" do %>
+            <i class="fas fa-users fa-users-alt"></i> Admins
+          <% end %>
         </li>
 
         <!-- Divider -->
@@ -152,7 +150,6 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Layout Admin</h1>
             <%= yield %>
           </div>
           <!-- /.container-fluid -->
