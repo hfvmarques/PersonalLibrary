@@ -16,4 +16,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( admins_backoffice.js admins_backoffice.css )
 
 # /lib/assets
-Rails.application.config.assets.precompile += %w( sb-admin-2.js sb-admin-2.css )
+Rails.application.config.assets.precompile += %w( sb-admin-2.js sb-admin-2.css undraw_profile.svg)
