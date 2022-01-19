@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  publisher: one
+  publicationYear: 1
+  edition: 1
+  bookType: one
+  activeLoan: false
+
+two:
+  title: MyString
+  publisher: two
+  publicationYear: 1
+  edition: 1
+  bookType: two
+  activeLoan: false

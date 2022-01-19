@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_181936) do
+ActiveRecord::Schema.define(version: 2022_01_19_180151) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,68 @@ ActiveRecord::Schema.define(version: 2022_01_14_181936) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "author_id"
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
+  end
+
+  create_table "book_types", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.integer "publisher_id"
+    t.integer "publicationYear"
+    t.integer "edition"
+    t.integer "bookType_id"
+    t.boolean "activeLoan"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookType_id"], name: "index_books_on_bookType_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
+  end
+
+  create_table "books_subjects", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "subject_id"
+    t.index ["book_id"], name: "index_books_subjects_on_book_id"
+    t.index ["subject_id"], name: "index_books_subjects_on_subject_id"
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "book_id"
+    t.string "description", null: false
+    t.datetime "loanDate"
+    t.datetime "returnDate"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_loans_on_book_id"
+  end
+
+  create_table "publishers", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
