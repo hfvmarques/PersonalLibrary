@@ -3,7 +3,7 @@
 one:
   title: MyString
   publisher: one
-  publicationYear: 1
+  published_at: 1
   edition: 1
   bookType: one
   activeLoan: false
@@ -11,7 +11,7 @@ one:
 two:
   title: MyString
   publisher: two
-  publicationYear: 1
+  published_at: 1
   edition: 1
   bookType: two
   activeLoan: false
