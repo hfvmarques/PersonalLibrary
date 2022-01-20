@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 2022_01_19_180151) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.integer "publisher_id"
-    t.integer "publicationYear"
+    t.integer "published_at"
     t.integer "edition"
-    t.integer "bookType_id"
+    t.integer "book_type_id"
     t.boolean "activeLoan"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bookType_id"], name: "index_books_on_bookType_id"
+    t.index ["book_type_id"], name: "index_books_on_book_type_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 

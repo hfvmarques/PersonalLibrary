@@ -3,9 +3,9 @@ class CreateBooks < ActiveRecord::Migration[5.2]
     create_table :books do |t|
       t.string :title
       t.references :publisher, foreign_key: true
-      t.integer :publicationYear
+      t.integer :published_at
       t.integer :edition
-      t.references :bookType, foreign_key: true
+      t.references :book_type, foreign_key: true
       t.boolean :activeLoan
 
       t.timestamps
