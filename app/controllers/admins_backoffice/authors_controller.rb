@@ -2,7 +2,7 @@ class AdminsBackoffice::AuthorsController < AdminsBackofficeController
   before_action :set_author, only: [:edit, :update, :destroy]
 
   def index
-    @authors = Author.all.page(params[:page])
+    @authors = Author.all.order(:description).page(params[:page])
   end
 
   def new

@@ -4,6 +4,24 @@
       admin:
         one: Administrador
         other: Administradores
+      author:
+        one: Autor(a)
+        other: Autores(as)
+      book_type:
+        one: Tipo de Livro
+        other: Tipos de Livro
+      book:
+        one: Livro
+        other: Livros
+      loan:
+        one: Empréstimo
+        other: Empréstimos
+      publisher:
+        one: Editora
+        other: Editoras
+      subject:
+        one: Assunto
+        other: Assuntos
     attributes:
       admin:
         id: Id
@@ -12,3 +30,19 @@
         password_confirmation: Confirmação de Senha
         created_at: Criado em
         updated_at: Atualizado em
+      author:
+        id: Id
+        description: Nome
+      book_type:
+        id: Id
+        description: Descrição
+      book:
+        id: Id
+      loan:
+        id: Id
+      publisher:
+        id: Id
+        description: Nome
+      subject:
+        id: Id
+        description: Descrição
