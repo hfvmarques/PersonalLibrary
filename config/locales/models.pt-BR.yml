@@ -38,6 +38,14 @@
         description: Descrição
       book:
         id: Id
+        title: Título
+        publisher: Editora
+        published_at: Ano
+        edition: Edição
+        book_type: Tipo
+        activeLoan: Emprestado
+        author: Autor(es)
+        subject: Assunto(s)
       loan:
         id: Id
       publisher:

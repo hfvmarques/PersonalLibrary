@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.integer :published_at
       t.integer :edition
       t.references :book_type, foreign_key: true
-      t.boolean :activeLoan
+      t.boolean :activeLoan, default: false
 
       t.timestamps
     end

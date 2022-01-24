@@ -1,0 +1,54 @@
+'en':
+  activerecord:
+    models:
+      admin:
+        one: Administrator
+        other: Administratorr
+      author:
+        one: Author
+        other: Authors
+      book_type:
+        one: Book Type
+        other: Book Types
+      book:
+        one: Book
+        other: Books
+      loan:
+        one: Loan
+        other: Loans
+      publisher:
+        one: Publisher
+        other: Publishers
+      subject:
+        one: Subject
+        other: Subjects
+    attributes:
+      admin:
+        id: Id
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+        created_at: Created at
+        updated_at: Updated at
+      author:
+        id: Id
+        description: Name
+      book_type:
+        id: Id
+        description: Description
+      book:
+        id: Id
+        title: Title
+        publisher: Publisher
+        published_at: Year
+        edition: Edition
+        book_type: Type
+        activeLoan: Loaned
+      loan:
+        id: Id
+      publisher:
+        id: Id
+        description: Name
+      subject:
+        id: Id
+        description: Description

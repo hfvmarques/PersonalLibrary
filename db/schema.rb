@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_180151) do
     t.integer "published_at"
     t.integer "edition"
     t.integer "book_type_id"
-    t.boolean "activeLoan"
+    t.boolean "activeLoan", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_type_id"], name: "index_books_on_book_type_id"
