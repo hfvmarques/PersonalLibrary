@@ -28,8 +28,10 @@
         <td><%= book.title %></td>
         <td>
           <% book.authors.each do |i| %>
-          <%= i.description %>          
-          <% end %>          
+            <p>
+              <%= i.description %>          
+            </p>
+          <% end %>
         </td>
         <td><%= book.publisher.description %></td>
         <td><%= book.published_at %></td>
@@ -37,7 +39,9 @@
         <td><%= book.book_type.description %></td>
         <td>
           <% book.subjects.each do |i| %>
-          <%= i.description %>          
+            <p>
+              <%= i.description %>
+            </p>          
           <% end %>          
         </td>
         <td><%= t(book.activeLoan) %></td>

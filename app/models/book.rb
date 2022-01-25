@@ -6,4 +6,6 @@ class Book < ApplicationRecord
 
   belongs_to :publisher
   belongs_to :book_type
+  
+  paginates_per 10
 end
