@@ -1,0 +1,2 @@
+module AdminsBackoffice::LoansHelper
+end
