@@ -1,6 +1,5 @@
 class AdminsBackoffice::BooksController < AdminsBackofficeController
   before_action :set_book, only: [:edit, :update, :destroy]
-  before_action :set_author_options, :set_subject_options, only: %i[ new create edit update]
 
   def index
     @books = Book.all.order(:title).page(params[:page])
@@ -11,8 +10,6 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
   end
 
   def create
-    
-    binding.pry
     
     @book = Book.new(params_book)
     if @book.save
@@ -58,14 +55,6 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
 
   def set_book
     @book = Book.find(params[:id])
-  end
-
-  def set_author_options
-    @author_options = Author.all.pluck(:description, :id)
-  end
-
-  def set_subject_options
-    @subject_options = Subject.all.pluck(:description, :id)
   end
   
 end
