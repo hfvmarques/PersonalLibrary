@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-lg-12">
+      <h1 class="h3 mb-0 text-gray-800">Livros</h1>
+  </div>
+</div>
+<% @books.each do |book| %>
+  <div class="card-columns">
+    <div id="<%= dom_id book %>", class="card border-left-primary shadow h-100 py-2" >
+      <div class="card-body">
+        <p>
+          <strong>Título</strong>
+          <%= book.title %>
+        </p>
+        <p>
+          <strong>Autor</strong>
+          <% book.authors.each do |i| %>
+            <p>
+              <%= i.description %>
+            </p>
+          <% end %>
+        </p>
+        <p>
+          <strong>Editora</strong>
+          <%= book.publisher.description %>
+        </p>
+        <p>
+          <strong>Ano</strong>
+          <%= book.published_at %>
+        </p>
+        <p>
+          <strong>Edição</strong>
+          <%= book.edition %>
+        </p>
+        <p>
+          <strong>Tipo</strong>
+          <%= book.book_type.description %>
+        </p>
+        <p>
+          <strong>Assunto</strong>
+          <% book.subjects.each do |i| %>
+            <p>
+              <%= i.description %>
+            </p>
+          <% end %>
+        </p>
+        <p>
+          <strong>Emprestado</strong>
+          <%= book.activeLoan %>
+        </p>
+      </div>
+    </div>
+    <br>
+  </div>
+<% end %>
+<%= paginate @books %>
+</div>
