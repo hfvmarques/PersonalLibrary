@@ -1,8 +1,12 @@
 class AdminsBackoffice::BooksController < AdminsBackofficeController
   before_action :set_book, only: [:edit, :update, :destroy]
+  before_action :get_authors, :get_publishers, :get_book_types, :get_subjects, only: [:new, :edit]
 
   def index
-    @books = Book.all.order(:title).page(params[:page])
+    @books = Book
+      .includes(:book_type, :publisher, :authors, :subjects)
+      .order(:title)
+      .page(params[:page])
   end
 
   def new
@@ -56,5 +60,21 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
   def set_book
     @book = Book.find(params[:id])
   end
-  
+
+  def get_authors
+    @authors = Author.all
+  end
+
+  def get_publishers
+    @publishers = Publisher.all
+  end
+
+  def get_book_types
+    @book_types = BookType.all
+  end
+
+  def get_subjects
+    @subjects = Subject.all
+  end
+
 end

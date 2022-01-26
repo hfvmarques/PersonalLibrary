@@ -1,9 +1,9 @@
 class AdminsBackoffice::LoansController < AdminsBackofficeController
-
   before_action :set_loan, only: [:edit, :update, :destroy]
+  before_action :get_books, only: [:new, :edit]
 
   def index
-    @loans = Loan.all.order(:loanDate).page(params[:page])
+    @loans = Loan.includes(:book).order(:loanDate).page(params[:page])
   end
 
   def new
@@ -28,8 +28,6 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   end  
 
   def update
-    
-    binding.pry
     
     if !params_loan['returnDate(3i)'].blank? && !params_loan['returnDate(2i)'].blank? && !params_loan['returnDate(1i)'].blank?
       @loan.update(params_loan)
@@ -78,6 +76,10 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   def set_loan
     @loan = Loan.find(params[:id])
+  end
+
+  def get_books
+    @books = Book.all
   end
   
 end
