@@ -1,4 +1,5 @@
 class AdminsBackoffice::LoansController < AdminsBackofficeController
+
   before_action :set_loan, only: [:edit, :update, :destroy]
 
   def index
@@ -10,12 +11,16 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   end
 
   def create
-    
+
     @loan = Loan.new(params_loan)
-    if @loan.save
+    set_book
+    if @book.activeLoan == false
+      @loan.save!
+      @book.activeLoan = true
+      @book.save!
       redirect_to admins_backoffice_loans_path, notice: "Cadastrado com sucesso!"
     else
-      render :new
+      render :new, notice: "Este livro já está emprestado!"
     end
   end
     
@@ -23,7 +28,25 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   end  
 
   def update
-    if @loan.update(params_loan)
+    
+    binding.pry
+    
+    if !params_loan['returnDate(3i)'].blank? && !params_loan['returnDate(2i)'].blank? && !params_loan['returnDate(1i)'].blank?
+      @loan.update(params_loan)
+      set_book
+      @book.activeLoan = false
+      @book.save!
+
+      redirect_to admins_backoffice_loans_path, notice: "Atualizado com sucesso!"
+
+    elsif params_loan
+      set_book
+
+      @book.activeLoan = true
+      @book.save!
+
+      @loan.update(params_loan)
+
       redirect_to admins_backoffice_loans_path, notice: "Atualizado com sucesso!"
     else
       render :edit
@@ -38,6 +61,10 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
     end
   end
 
+  def set_book
+    @book = Book.find(params_loan[:book_id])
+  end
+
   private
 
   def params_loan
@@ -45,8 +72,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
       :book_id,
       :description,
       :loanDate,
-      :returnDate,
-      :active
+      :returnDate
     )
   end
 

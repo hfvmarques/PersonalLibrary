@@ -5,7 +5,6 @@ class CreateLoans < ActiveRecord::Migration[5.2]
       t.string :description, null: false
       t.datetime :loanDate
       t.datetime :returnDate
-      t.boolean :active, default: true
 
       t.timestamps
     end

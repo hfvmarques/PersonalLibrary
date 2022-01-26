@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2022_01_19_180151) do
     t.string "description", null: false
     t.datetime "loanDate"
     t.datetime "returnDate"
-    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_loans_on_book_id"

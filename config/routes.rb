@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admins_backoffice do
     get 'welcome/index' # Dashboard
-    resources :admins, :authors, :book_types, :publishers, :subjects, :books
+    resources :admins, :authors, :book_types, :publishers, :subjects, :books, :loans
 
   end
   namespace :site do
