@@ -44,7 +44,7 @@
             </p>          
           <% end %>          
         </td>
-        <td><%= t(book.activeLoan) %></td>
+        <td><%= human_boolean(book.activeLoan) %></td>
         <td style="width: 90px">
           <%= link_to edit_admins_backoffice_book_path(book), 
             class:"btn btn-primary btn-circle btn-sm" do %>

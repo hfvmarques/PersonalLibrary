@@ -48,6 +48,10 @@
         subject: Assunto(s)
       loan:
         id: Id
+        book: Livro
+        description: Nome
+        loanDate: Data do Empréstimo
+        returnDate: Data da Devolução
       publisher:
         id: Id
         description: Nome
