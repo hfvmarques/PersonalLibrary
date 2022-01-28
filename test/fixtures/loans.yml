@@ -3,13 +3,13 @@
 one:
   book: one
   description: MyString
-  loanDate: 2022-01-19 13:27:32
-  returnDate: 2022-01-19 13:27:32
+  loaned_at: 2022-01-19 13:27:32
+  returned_at: 2022-01-19 13:27:32
   active: false
 
 two:
   book: two
   description: MyString
-  loanDate: 2022-01-19 13:27:32
-  returnDate: 2022-01-19 13:27:32
+  loaned_at: 2022-01-19 13:27:32
+  returned_at: 2022-01-19 13:27:32
   active: false

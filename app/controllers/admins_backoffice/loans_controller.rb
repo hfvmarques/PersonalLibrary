@@ -3,7 +3,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   before_action :get_books, only: [:new, :edit]
 
   def index
-    @loans = Loan.includes(:book).order(:loanDate).page(params[:page])
+    @loans = Loan.includes(:book).order(:loaned_at).page(params[:page])
   end
 
   def new
@@ -14,9 +14,9 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
     @loan = Loan.new(params_loan)
     set_book
-    if @book.activeLoan == false
+    if @book.active_loan == false
       @loan.save!
-      @book.activeLoan = true
+      @book.active_loan = true
       @book.save!
       redirect_to admins_backoffice_loans_path, notice: "Cadastrado com sucesso!"
     else
@@ -29,10 +29,10 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   def update
     
-    if !params_loan['returnDate(3i)'].blank? && !params_loan['returnDate(2i)'].blank? && !params_loan['returnDate(1i)'].blank?
+    if !params_loan['returned_at(3i)'].blank? && !params_loan['returned_at(2i)'].blank? && !params_loan['returned_at(1i)'].blank?
       @loan.update(params_loan)
       set_book
-      @book.activeLoan = false
+      @book.active_loan = false
       @book.save!
 
       redirect_to admins_backoffice_loans_path, notice: "Atualizado com sucesso!"
@@ -40,7 +40,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
     elsif params_loan
       set_book
 
-      @book.activeLoan = true
+      @book.active_loan = true
       @book.save!
 
       @loan.update(params_loan)
@@ -69,8 +69,8 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
     params_loan = params.require(:loan).permit(
       :book_id,
       :description,
-      :loanDate,
-      :returnDate
+      :loaned_at,
+      :returned_at
     )
   end
 

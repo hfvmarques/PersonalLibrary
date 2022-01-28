@@ -6,7 +6,7 @@ one:
   published_at: 1
   edition: 1
   bookType: one
-  activeLoan: false
+  active_loan: false
 
 two:
   title: MyString
@@ -14,4 +14,4 @@ two:
   published_at: 1
   edition: 1
   bookType: two
-  activeLoan: false
+  active_loan: false

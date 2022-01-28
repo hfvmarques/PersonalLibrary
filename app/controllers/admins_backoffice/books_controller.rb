@@ -51,7 +51,7 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
       :published_at,
       :edition,
       :book_type_id,
-      :activeLoan,
+      :active_loan,
       subject_ids: [],
       author_ids: []
     )

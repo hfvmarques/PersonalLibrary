@@ -43,15 +43,15 @@
         published_at: Ano
         edition: Edição
         book_type: Tipo
-        activeLoan: Emprestado
+        active_loan: Emprestado
         author: Autor(es)
         subject: Assunto(s)
       loan:
         id: Id
         book: Livro
         description: Nome
-        loanDate: Data do Empréstimo
-        returnDate: Data da Devolução
+        loaned_at: Data do Empréstimo
+        returned_at: Data da Devolução
       publisher:
         id: Id
         description: Nome

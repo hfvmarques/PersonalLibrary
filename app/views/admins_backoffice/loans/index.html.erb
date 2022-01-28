@@ -23,8 +23,8 @@
       <tr>
         <td><%= loan.book.title %></td>
         <td><%= loan.description %></td>
-        <td><%= loan.loanDate.strftime('%d-%m-%Y') %></td>
-        <td><%= loan.returnDate.try(:strftime, '%d-%m-%Y') %></td>
+        <td><%= loan.loaned_at.strftime('%d-%m-%Y') %></td>
+        <td><%= loan.returned_at.try(:strftime, '%d-%m-%Y') %></td>
         <td style="width: 90px">
           <%= link_to edit_admins_backoffice_loan_path(loan), 
             class:"btn btn-primary btn-circle btn-sm" do %>

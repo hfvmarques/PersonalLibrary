@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_180151) do
     t.integer "published_at"
     t.integer "edition"
     t.integer "book_type_id"
-    t.boolean "activeLoan", default: false
+    t.boolean "active_loan", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_type_id"], name: "index_books_on_book_type_id"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_180151) do
   create_table "loans", force: :cascade do |t|
     t.integer "book_id"
     t.string "description", null: false
-    t.datetime "loanDate"
-    t.datetime "returnDate"
+    t.datetime "loaned_at"
+    t.datetime "returned_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_loans_on_book_id"

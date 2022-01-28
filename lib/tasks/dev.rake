@@ -87,7 +87,7 @@ namespace :dev do
         published_at: rand(1900..2022),
         edition: rand(1..30),
         book_type: BookType.all.sample,
-        activeLoan: false
+        active_loan: false
       )
       b.subjects << Subject.all.sample(rand(1..3))
       b.authors << Author.all.sample(rand(1..3))
@@ -100,9 +100,9 @@ namespace :dev do
       l = Loan.create!(
         book: Book.all.sample,
         description: Faker::Name.name,
-        loanDate: Faker::Date.between(from: 10.days.ago, to: Date.today)
+        loaned_at: Faker::Date.between(from: 10.days.ago, to: Date.today)
       )
-      l.book.activeLoan = true
+      l.book.active_loan = true
       l.book.save
     end
   end

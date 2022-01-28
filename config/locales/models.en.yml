@@ -1,4 +1,4 @@
-'en':
+"en":
   activerecord:
     models:
       admin:
@@ -43,7 +43,7 @@
         published_at: Year
         edition: Edition
         book_type: Type
-        activeLoan: Loaned
+        active_loan: Loaned
       loan:
         id: Id
       publisher:
