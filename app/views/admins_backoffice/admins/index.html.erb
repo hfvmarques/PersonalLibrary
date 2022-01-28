@@ -7,7 +7,7 @@
   <table class="table table-striped table-bordered table-hover table-sm">
       <thead>
           <tr>
-              <th>Email</th>
+              <th><%= @admins.model.human_attribute_name(:email) %></th>
               <th>
                 <%= link_to new_admins_backoffice_admin_path, class:"btn btn-success btn-circle btn-sm" do %>
                   <i class="fa fa-plus"></i>
