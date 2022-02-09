@@ -53,6 +53,8 @@ group :development, :test do
   gem 'pry'
 
   gem 'pry-nav'
+
+  gem 'rails_db', '>= 2.3.1'
 end
 
 group :development do

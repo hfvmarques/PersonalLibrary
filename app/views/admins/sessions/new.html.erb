@@ -18,9 +18,9 @@
                 </div>
                 <div class="form-group">
                   <% if devise_mapping.rememberable? %>
-                    <div class="custom-control custom-checkbox small">
-                      <label class="custom-control-label" for="customCheck">
-                        <%= f.check_box :remember_me, class:"custom-control-input", id:"customCheck" %>Lembrar-me
+                    <div class="custom-control custom-checkbox-small">
+                      <label for="customCheck">
+                        <%= f.check_box :remember_me, id:"customCheck" %>Lembrar-me
                       </label>
                     </div>
                   <% end %>
