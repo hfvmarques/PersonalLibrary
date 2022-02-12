@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'search', to: 'search#books'
   end
   
-  devise_for :admins#, skip: [:registrations]
+  devise_for :admins, skip: [:registrations]
   get 'inicio', to: 'site/welcome#index'
 
   root to: 'site/welcome#index'
