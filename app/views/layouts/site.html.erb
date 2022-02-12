@@ -1,16 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html class="js-focus-visible" data-js-focus-visible="">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PersonalLibrary</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'site' %>
+
   </head>
+  <body>    
+    <main>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Personal Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+              <li><%= link_to 'Página Principal', root_path, class:"nav-link active" %></li>
+              <li><%= link_to 'Área Administrativa', admins_backoffice_welcome_index_path, class:"nav-link active" %></li>
+              <%= form_with(url: site_search_path, local: true, method: :get) do |form| %>
+                <%= form.text_field :term, class:"form-control", placeholder:"Assunto" %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div>
+        <div class="bg-light p-5 rounded">
+          <div class="col-sm-8 mx-auto">
+            <h1>Site::Welcome#index</h1>
+            <p>Find me in app/views/site/welcome/index.html.erb</p>
 
-  <body>
-    <h1>Layout Site</h1>
-    <%= yield %>
+            <% if admin_signed_in? %>
+              <p>Admin está logado / <%= current_admin.email %></p>
+            <% else %>
+              <p>Admin não está logado</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= yield %>
+    </main>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'site' %>
+
+    <% if notice %>
+      <script>
+        $.bootstrapGrowl('<%= notice %>', {
+        type: 'success', // (null, 'info', 'danger', 'success')
+        align: 'right', // ('left', 'right', or 'center')
+        allow_dismiss: true, // If true then will display a cross to close the popup.
+        stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });
+      </script>
+    <% end %>
   </body>
 </html>
