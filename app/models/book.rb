@@ -8,4 +8,12 @@ class Book < ApplicationRecord
   belongs_to :book_type
   
   paginates_per 10
+
+  scope :search_subject, -> (term) {
+    joins(:subjects).where("lower(subjects.description) LIKE ?", "%#{term.downcase}%")
+  }
+
+  scope :all_books, -> {
+    includes(:book_type, :publisher, :authors, :subjects).order(:title)
+  }
 end

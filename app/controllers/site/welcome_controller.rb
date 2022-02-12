@@ -1,7 +1,5 @@
 class Site::WelcomeController < SiteController
   def index
-    @books = Book
-      .includes(:book_type, :publisher, :authors, :subjects)
-      .order(:title)
+    @books = Book.all_books
   end
 end

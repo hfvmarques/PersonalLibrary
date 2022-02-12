@@ -1,5 +1,5 @@
 class Site::SearchController < SiteController
   def books
-    @books = Book.joins(:subjects).where("lower(subjects.description) LIKE ?", "%#{params[:term].downcase}%")      
+    @books = Book.search_subject(params[:term])
   end
 end
