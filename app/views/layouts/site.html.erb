@@ -29,15 +29,12 @@
         </div>
       </nav>
       <div>
-        <div class="bg-light p-5 rounded">
+        <div class="p-5 rounded jumbotron">
           <div class="col-sm-8 mx-auto">
-            <h1>Site::Welcome#index</h1>
-            <p>Find me in app/views/site/welcome/index.html.erb</p>
-
-            <% if admin_signed_in? %>
-              <p>Admin está logado / <%= current_admin.email %></p>
+            <% if params[:term].present? %>
+              <h3>Resultado da busca para os livros com termo <strong>"<%= params[:term] %>"</strong> no assunto:</h3>
             <% else %>
-              <p>Admin não está logado</p>
+              <h3>Todos os livros cadastrados:</h3>
             <% end %>
           </div>
         </div>

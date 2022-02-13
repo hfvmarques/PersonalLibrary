@@ -10,7 +10,7 @@ class Book < ApplicationRecord
   paginates_per 10
 
   scope :search_subject, -> (term) {
-    joins(:subjects).where("lower(subjects.description) LIKE ?", "%#{term.downcase}%")
+    joins(:subjects).where("lower(subjects.description) LIKE ?", "%#{term.downcase}%").order(:title)
   }
 
   scope :all_books, -> {
