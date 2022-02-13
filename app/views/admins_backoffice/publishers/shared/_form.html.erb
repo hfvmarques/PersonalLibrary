@@ -23,7 +23,7 @@
             <%= form_with(model: [ :admins_backoffice, @publisher ], local: true) do |form| %>
               <div class="form-group">
                 <%= form.label :description %>
-                <%= form.text_field :description, class:"form-control", placeholder:"Digite o assunto" %>
+                <%= form.text_field :description, class:"form-control", placeholder:"Digite o nome da editora" %>
               </div>
               <button type="submit" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
