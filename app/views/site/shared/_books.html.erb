@@ -21,18 +21,18 @@
             <td>
               <% book.authors.each do |i| %>
                 <p>
-                  <%= i.description %>          
+                  <%= link_to i.description, site_search_author_path(i.id, i.description) %>          
                 </p>
               <% end %>
             </td>
-            <td><%= book.publisher.description %></td>
+            <td><%= link_to book.publisher.description, site_search_publisher_path(book.publisher.id, book.publisher.description) %></td>
             <td><%= book.published_at %></td>
             <td><%= book.edition %></td>
-            <td><%= book.book_type.description %></td>
+            <td><%= link_to book.book_type.description, site_search_book_type_path(book.book_type.id, book.book_type.description) %></td>
             <td>
               <% book.subjects.each do |i| %>
                 <p>
-                  <%= i.description %>
+                  <%= link_to i.description, site_search_subject_path(i.id, i.description) %>
                 </p>          
               <% end %>          
             </td>

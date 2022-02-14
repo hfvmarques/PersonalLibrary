@@ -31,11 +31,9 @@
       <div>
         <div class="p-5 rounded jumbotron">
           <div class="col-sm-8 mx-auto">
-            <% if params[:term].present? %>
-              <h3>Resultado da busca para os livros com termo <strong>"<%= params[:term] %>"</strong> no assunto:</h3>
-            <% else %>
-              <h3>Todos os livros cadastrados:</h3>
-            <% end %>
+            <h3>
+              <%= header_message %>
+            </h3>
           </div>
         </div>
       </div>
