@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AdminsBackoffice::BookTypesController < AdminsBackofficeController
-  before_action :set_book_type, only: [:edit, :update, :destroy]
+  before_action :set_book_type, only: %i[edit update destroy]
 
   def index
     @book_types = BookType.all.order(:description).page(params[:page])
@@ -8,22 +10,21 @@ class AdminsBackoffice::BookTypesController < AdminsBackofficeController
   def new
     @book_type = BookType.new
   end
-  
+
   def create
     @book_type = BookType.new(params_book_type)
     if @book_type.save
-      redirect_to admins_backoffice_book_types_path, notice: "Cadastrado com sucesso!"
+      redirect_to admins_backoffice_book_types_path, notice: 'Cadastrado com sucesso!'
     else
       render :new
     end
   end
-    
-  def edit
-  end  
+
+  def edit; end
 
   def update
     if @book_type.update(params_book_type)
-      redirect_to admins_backoffice_book_types_path, notice: "Atualizado com sucesso!"
+      redirect_to admins_backoffice_book_types_path, notice: 'Atualizado com sucesso!'
     else
       render :edit
     end
@@ -31,7 +32,7 @@ class AdminsBackoffice::BookTypesController < AdminsBackofficeController
 
   def destroy
     if @book_type.destroy
-      redirect_to admins_backoffice_book_types_path, notice: "Excluído com sucesso!"
+      redirect_to admins_backoffice_book_types_path, notice: 'Excluído com sucesso!'
     else
       render :index
     end
@@ -40,7 +41,7 @@ class AdminsBackoffice::BookTypesController < AdminsBackofficeController
   private
 
   def params_book_type
-    params_book_type = params.require(:book_type).permit(:description)
+    params.require(:book_type).permit(:description)
   end
 
   def set_book_type

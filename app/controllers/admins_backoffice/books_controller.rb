@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class AdminsBackoffice::BooksController < AdminsBackofficeController
-  before_action :set_book, only: [:edit, :update, :destroy]
-  before_action :get_authors, :get_publishers, :get_book_types, :get_subjects, only: [:new, :edit]
+  before_action :set_book, only: %i[edit update destroy]
+  before_action :get_authors, :get_publishers, :get_book_types, :get_subjects, only: %i[new edit]
 
   def index
     @books = Book
-      .includes(:book_type, :publisher, :authors, :subjects)
-      .order(:title)
-      .page(params[:page])
+              .includes(:book_type, :publisher, :authors, :subjects)
+              .order(:title)
+              .page(params[:page])
   end
 
   def new
@@ -14,21 +16,19 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
   end
 
   def create
-    
     @book = Book.new(params_book)
     if @book.save
-      redirect_to admins_backoffice_books_path, notice: "Cadastrado com sucesso!"
+      redirect_to admins_backoffice_books_path, notice: 'Cadastrado com sucesso!'
     else
       render :new
     end
   end
-    
-  def edit
-  end  
+
+  def edit; end
 
   def update
     if @book.update(params_book)
-      redirect_to admins_backoffice_books_path, notice: "Atualizado com sucesso!"
+      redirect_to admins_backoffice_books_path, notice: 'Atualizado com sucesso!'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
 
   def destroy
     if @book.destroy
-      redirect_to admins_backoffice_books_path, notice: "Excluído com sucesso!"
+      redirect_to admins_backoffice_books_path, notice: 'Excluído com sucesso!'
     else
       render :index
     end
@@ -45,7 +45,7 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
   private
 
   def params_book
-    params_book = params.require(:book).permit(
+    params.require(:book).permit(
       :title,
       :publisher_id,
       :published_at,
@@ -76,5 +76,4 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
   def get_subjects
     @subjects = Subject.all
   end
-
 end

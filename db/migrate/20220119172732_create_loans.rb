@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Creates table of loans
+#
 class CreateLoans < ActiveRecord::Migration[5.2]
   def change
     create_table :loans do |t|

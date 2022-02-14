@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AdminsBackoffice::LoansController < AdminsBackofficeController
-  before_action :set_loan, only: [:edit, :update, :destroy]
-  before_action :get_books, only: [:new, :edit]
+  before_action :set_loan, only: %i[edit update destroy]
+  before_action :get_books, only: %i[new edit]
 
   def index
     @loans = Loan.includes(:book).order(:loaned_at).page(params[:page])
@@ -11,31 +13,28 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   end
 
   def create
-
     @loan = Loan.new(params_loan)
     set_book
     if @book.active_loan == false
       @loan.save!
       @book.active_loan = true
       @book.save!
-      redirect_to admins_backoffice_loans_path, notice: "Cadastrado com sucesso!"
+      redirect_to admins_backoffice_loans_path, notice: 'Cadastrado com sucesso!'
     else
-      render :new, notice: "Este livro já está emprestado!"
+      render :new, notice: 'Este livro já está emprestado!'
     end
   end
-    
-  def edit
-  end  
+
+  def edit; end
 
   def update
-    
-    if !params_loan['returned_at(3i)'].blank? && !params_loan['returned_at(2i)'].blank? && !params_loan['returned_at(1i)'].blank?
+    if params_loan['returned_at(3i)'].present? && params_loan['returned_at(2i)'].present? && params_loan['returned_at(1i)'].present?
       @loan.update(params_loan)
       set_book
       @book.active_loan = false
       @book.save!
 
-      redirect_to admins_backoffice_loans_path, notice: "Atualizado com sucesso!"
+      redirect_to admins_backoffice_loans_path, notice: 'Atualizado com sucesso!'
 
     elsif params_loan
       set_book
@@ -45,7 +44,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
       @loan.update(params_loan)
 
-      redirect_to admins_backoffice_loans_path, notice: "Atualizado com sucesso!"
+      redirect_to admins_backoffice_loans_path, notice: 'Atualizado com sucesso!'
     else
       render :edit
     end
@@ -53,7 +52,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   def destroy
     if @loan.destroy
-      redirect_to admins_backoffice_loans_path, notice: "Excluído com sucesso!"
+      redirect_to admins_backoffice_loans_path, notice: 'Excluído com sucesso!'
     else
       render :index
     end
@@ -66,7 +65,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   private
 
   def params_loan
-    params_loan = params.require(:loan).permit(
+    params.require(:loan).permit(
       :book_id,
       :description,
       :loaned_at,
@@ -81,5 +80,4 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   def get_books
     @books = Book.all
   end
-  
 end

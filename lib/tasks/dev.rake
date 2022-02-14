@@ -1,27 +1,29 @@
+# frozen_string_literal: true
+
 namespace :dev do
   DEFAULT_PASSWORD = 123456
   DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
 
-  desc "Configura o ambiente de desenvolvimento"
+  desc 'Configura o ambiente de desenvolvimento'
   task setup: :environment do
     if Rails.env.development?
-      show_spinner('Apagando DB...') { %x(rails db:drop) }
-      show_spinner('Criando DB...') { %x(rails db:create) }
-      show_spinner('Migrando DB...') { %x(rails db:migrate) }
-      show_spinner('Cadastrando Admin...') { %x(rails dev:add_default_admin) }
-      show_spinner('Cadastrando Admins Extras...') { %x(rails dev:add_extra_admins) }
-      show_spinner('Cadastrando Autores...') { %x(rails dev:add_authors) }
-      show_spinner('Cadastrando Tipos de Livro...') { %x(rails dev:add_book_types) }
-      show_spinner('Cadastrando Editoras...') { %x(rails dev:add_publishers) }
-      show_spinner('Cadastrando Assuntos...') { %x(rails dev:add_subjects) }
-      show_spinner('Cadastrando Livros...') { %x(rails dev:add_books) }
-      show_spinner('Cadastrando Empréstimos...') { %x(rails dev:add_loans) }
+      show_spinner('Apagando DB...') { `rails db:drop` }
+      show_spinner('Criando DB...') { `rails db:create` }
+      show_spinner('Migrando DB...') { `rails db:migrate` }
+      show_spinner('Cadastrando Admin...') { `rails dev:add_default_admin` }
+      show_spinner('Cadastrando Admins Extras...') { `rails dev:add_extra_admins` }
+      show_spinner('Cadastrando Autores...') { `rails dev:add_authors` }
+      show_spinner('Cadastrando Tipos de Livro...') { `rails dev:add_book_types` }
+      show_spinner('Cadastrando Editoras...') { `rails dev:add_publishers` }
+      show_spinner('Cadastrando Assuntos...') { `rails dev:add_subjects` }
+      show_spinner('Cadastrando Livros...') { `rails dev:add_books` }
+      show_spinner('Cadastrando Empréstimos...') { `rails dev:add_loans` }
     else
-      puts "Você não está em ambiente de desenvolvimento!"    
-    end    
+      puts 'Você não está em ambiente de desenvolvimento!'
+    end
   end
 
-  desc "Adiciona o administrador padrão"
+  desc 'Adiciona o administrador padrão'
   task add_default_admin: :environment do
     Admin.create!(
       email: 'admin@admin.com',
@@ -30,9 +32,9 @@ namespace :dev do
     )
   end
 
-  desc "Adiciona administradores extras"
+  desc 'Adiciona administradores extras'
   task add_extra_admins: :environment do
-    10.times do |i|
+    10.times do |_i|
       Admin.create!(
         email: Faker::Internet.email,
         password: DEFAULT_PASSWORD,
@@ -41,16 +43,16 @@ namespace :dev do
     end
   end
 
-  desc "Cadastrando Autores"
+  desc 'Cadastrando Autores'
   task add_authors: :environment do
-    50.times do |a|
+    50.times do |_a|
       Author.create!(
         description: Faker::Book.author
       )
     end
   end
 
-  desc "Cadastrando Tipos de Livro"
+  desc 'Cadastrando Tipos de Livro'
   task add_book_types: :environment do
     file_name = 'book_types.txt'
     file_path = File.join(DEFAULT_FILES_PATH, file_name)
@@ -60,25 +62,25 @@ namespace :dev do
     end
   end
 
-  desc "Cadastrando Editoras"
+  desc 'Cadastrando Editoras'
   task add_publishers: :environment do
-    20.times do |p|
+    20.times do |_p|
       Publisher.create!(
         description: Faker::Book.publisher
       )
     end
   end
 
-  desc "Cadastrando Assuntos"
+  desc 'Cadastrando Assuntos'
   task add_subjects: :environment do
-    20.times do |s|
+    20.times do |_s|
       Subject.create!(
         description: Faker::Book.genre
       )
     end
   end
 
-  desc "Cadastrando Livros"
+  desc 'Cadastrando Livros'
   task add_books: :environment do
     50.times do |b|
       b = Book.create!(
@@ -94,13 +96,13 @@ namespace :dev do
     end
   end
 
-  desc "Cadastrando Empréstimos"
+  desc 'Cadastrando Empréstimos'
   task add_loans: :environment do
     5.times do |l|
       l = Loan.create!(
         book: Book.all.sample,
         description: Faker::Name.name,
-        loaned_at: Faker::Date.between(from: 10.days.ago, to: Date.today)
+        loaned_at: Faker::Date.between(from: 10.days.ago, to: Time.zone.today)
       )
       l.book.active_loan = true
       l.book.save
@@ -113,7 +115,6 @@ namespace :dev do
     spinner = TTY::Spinner.new("[:spinner] #{start_msg}", format: :bouncing)
     spinner.auto_spin
     yield
-    spinner.success(end_msg)  
+    spinner.success(end_msg)
   end
-
 end

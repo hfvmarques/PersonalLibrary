@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Creates table of books
+#
 class CreateBooks < ActiveRecord::Migration[5.2]
   def change
     create_table :books do |t|

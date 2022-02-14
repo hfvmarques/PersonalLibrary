@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Site::SearchController < SiteController
   def books
     @books = Book.search_subject(params[:term])

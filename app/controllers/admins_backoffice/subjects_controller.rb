@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AdminsBackoffice::SubjectsController < AdminsBackofficeController
-  before_action :set_subject, only: [:edit, :update, :destroy]
+  before_action :set_subject, only: %i[edit update destroy]
 
   def index
     @subjects = Subject.all.order(:description).page(params[:page])
@@ -8,21 +10,21 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   def new
     @subject = Subject.new
   end
+
   def create
     @subject = Subject.new(params_subject)
     if @subject.save
-      redirect_to admins_backoffice_subjects_path, notice: "Cadastrado com sucesso!"
+      redirect_to admins_backoffice_subjects_path, notice: 'Cadastrado com sucesso!'
     else
       render :new
     end
   end
-    
-  def edit
-  end  
+
+  def edit; end
 
   def update
     if @subject.update(params_subject)
-      redirect_to admins_backoffice_subjects_path, notice: "Atualizado com sucesso!"
+      redirect_to admins_backoffice_subjects_path, notice: 'Atualizado com sucesso!'
     else
       render :edit
     end
@@ -30,7 +32,7 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
 
   def destroy
     if @subject.destroy
-      redirect_to admins_backoffice_subjects_path, notice: "Excluído com sucesso!"
+      redirect_to admins_backoffice_subjects_path, notice: 'Excluído com sucesso!'
     else
       render :index
     end
@@ -39,7 +41,7 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   private
 
   def params_subject
-    params_subject = params.require(:subject).permit(:description)
+    params.require(:subject).permit(:description)
   end
 
   def set_subject
