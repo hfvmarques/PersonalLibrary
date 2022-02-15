@@ -35,11 +35,11 @@
               </div>
               <div class="form-group">
                 <%= form.label :published_at %>
-                <%= form.text_field :published_at, class:"form-control", placeholder:"Digite o ano de publicação" %>
+                <%= form.number_field :published_at, min: 1900, max: Date.today.year, class:"form-control", placeholder:"Digite o ano de publicação" %>
               </div>
               <div class="form-group">
                 <%= form.label :edition %>
-                <%= form.text_field :edition, class:"form-control", placeholder:"Digite a edição" %>
+                <%= form.number_field :edition, min: 1, class:"form-control", placeholder:"Digite a edição" %>
               </div>
               <div class="form-group">
                 <%= form.label :book_type %>
