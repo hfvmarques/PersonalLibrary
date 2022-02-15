@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class AdminsBackoffice::LoansController < AdminsBackofficeController
-  before_action :set_loan, only: %i[edit update destroy]
-  before_action :get_books, only: %i[new edit]
+  before_action :find_loan, only: %i[edit update destroy]
+  before_action :all_books, only: %i[new edit]
 
   def index
     @loans = Loan.includes(:book).order(:loaned_at).page(params[:page])
@@ -14,7 +14,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   def create
     @loan = Loan.new(params_loan)
-    set_book
+    find_book
     if @book.active_loan == false
       @loan.save!
       @book.active_loan = true
@@ -27,17 +27,18 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   def edit; end
 
+  # rubocop:disable Metrics/AbcSize
   def update
-    if params_loan['returned_at(3i)'].present? && params_loan['returned_at(2i)'].present? && params_loan['returned_at(1i)'].present?
+    if check_date?('returned_at(3i)', 'returned_at(2i)', 'returned_at(1i)')
       @loan.update(params_loan)
-      set_book
+      find_book
       @book.active_loan = false
       @book.save!
 
       redirect_to admins_backoffice_loans_path, notice: 'Atualizado com sucesso!'
 
     elsif params_loan
-      set_book
+      find_book
 
       @book.active_loan = true
       @book.save!
@@ -49,6 +50,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
       render :edit
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def destroy
     if @loan.destroy
@@ -58,11 +60,21 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
     end
   end
 
-  def set_book
+  def find_book
     @book = Book.find(params_loan[:book_id])
   end
 
   private
+
+  def check_date?(day, month, year)
+    return false if params_loan[day].blank?
+
+    return false if params_loan[month].blank?
+
+    return false if params_loan[year].blank?
+
+    true
+  end
 
   def params_loan
     params.require(:loan).permit(
@@ -73,11 +85,11 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
     )
   end
 
-  def set_loan
+  def find_loan
     @loan = Loan.find(params[:id])
   end
 
-  def get_books
+  def all_books
     @books = Book.all
   end
 end

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-namespace :dev do
-  DEFAULT_PASSWORD = 123456
-  DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
+# rubocop:disable Style/NumericLiterals
+DEFAULT_PASSWORD = 123456
+# rubocop:enable Style/NumericLiterals
+DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
 
+# rubocop:disable Metrics/BlockLength
+namespace :dev do
   desc 'Configura o ambiente de desenvolvimento'
   task setup: :environment do
     if Rails.env.development?
@@ -80,6 +83,7 @@ namespace :dev do
     end
   end
 
+  # rubocop:disable Lint/ShadowedArgument
   desc 'Cadastrando Livros'
   task add_books: :environment do
     50.times do |b|
@@ -108,6 +112,7 @@ namespace :dev do
       l.book.save
     end
   end
+  # rubocop:enable Lint/ShadowedArgument
 
   private
 
@@ -118,3 +123,4 @@ namespace :dev do
     spinner.success(end_msg)
   end
 end
+# rubocop:enable Metrics/BlockLength

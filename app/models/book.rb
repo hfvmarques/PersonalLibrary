@@ -12,30 +12,42 @@ class Book < ApplicationRecord
   paginates_per 10
 
   scope :search_subject, lambda { |term|
-    joins(:subjects).where('lower(subjects.description) LIKE ?', "%#{term.downcase}%").order(:title)
+    include_attributes.joins(:subjects).where(
+      'lower(subjects.description) LIKE ?', "%#{term.downcase}%"
+    ).order(:title)
   }
 
   scope :search_subject_id, lambda { |subject_id|
-    includes(:book_type, :publisher, :authors, :subjects).joins(:subjects).where(
-      'subjects.id = ?', subject_id
+    include_attributes.joins(:subjects).where(
+      subjects: { id: subject_id }
     ).order(:title)
   }
 
   scope :search_author_id, lambda { |author_id|
-    includes(:book_type, :publisher, :authors, :subjects).joins(:authors).where(
-      'authors.id = ?', author_id
+    include_attributes.joins(:authors).where(
+      authors: { id: author_id }
     ).order(:title)
   }
 
   scope :search_publisher_id, lambda { |publisher_id|
-    includes(:book_type, :publisher, :authors, :subjects).where(publisher_id: publisher_id).order(:title)
+    include_attributes.where(
+      publisher_id: publisher_id
+    ).order(:title)
   }
 
   scope :search_book_type_id, lambda { |book_type_id|
-    includes(:book_type, :publisher, :authors, :subjects).where(book_type_id: book_type_id).order(:title)
+    include_attributes.where(
+      book_type_id: book_type_id
+    ).order(:title)
   }
 
   scope :all_books, lambda {
-    includes(:book_type, :publisher, :authors, :subjects).order(:title)
+    include_attributes.order(:title)
   }
+end
+
+private
+
+def include_attributes
+  includes(:book_type, :publisher, :authors, :subjects)
 end

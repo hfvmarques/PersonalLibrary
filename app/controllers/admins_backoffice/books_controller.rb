@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 class AdminsBackoffice::BooksController < AdminsBackofficeController
-  before_action :set_book, only: %i[edit update destroy]
-  before_action :get_authors, :get_publishers, :get_book_types, :get_subjects, only: %i[new edit]
+  before_action :find_book, only: %i[edit update destroy]
+  before_action :all_authors, :all_publishers, :all_book_types, :all_subjects, only: %i[new edit]
 
   def index
-    @books = Book
-              .includes(:book_type, :publisher, :authors, :subjects)
-              .order(:title)
-              .page(params[:page])
+    @books = Book.includes(
+      :book_type,
+      :publisher,
+      :authors,
+      :subjects
+    ).order(:title).page(params[:page])
   end
 
   def new
@@ -57,23 +59,23 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
     )
   end
 
-  def set_book
+  def find_book
     @book = Book.find(params[:id])
   end
 
-  def get_authors
+  def all_authors
     @authors = Author.all
   end
 
-  def get_publishers
+  def all_publishers
     @publishers = Publisher.all
   end
 
-  def get_book_types
+  def all_book_types
     @book_types = BookType.all
   end
 
-  def get_subjects
+  def all_subjects
     @subjects = Subject.all
   end
 end
