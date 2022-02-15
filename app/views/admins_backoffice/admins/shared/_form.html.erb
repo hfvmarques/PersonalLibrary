@@ -20,7 +20,7 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-lg-6">
-            <%= form_with(model: [ :admins_backoffice, @admin ], local: true) do |form| %>
+            <%= form_with(model: [ :admins_backoffice, @admin ], html: { autocomplete: "off" }, local: true) do |form| %>
               <div class="form-group">
                 <%= form.label :email %>
                 <%= form.text_field :email, class:"form-control", placeholder:"Digite o e-mail", type:"email" %>
