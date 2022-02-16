@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   belongs_to :publisher
   belongs_to :book_type
 
-  paginates_per 10
+  # paginates_per 10
 
   scope :search_subject, lambda { |term|
     include_attributes.joins(:subjects).where(
