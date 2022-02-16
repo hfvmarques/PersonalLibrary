@@ -1,6 +1,9 @@
 <div class="row">
-  <div class="col-lg-12">
-      <h1 class="page-header">Tipos de Livro</h1>
+  <div class="col-lg-12 d-flex">
+    <p class="h2 align-self-center p-2">Tipos de Livro</p>
+    <%= link_to new_admins_backoffice_book_type_path, class:"btn btn-success btn-circle btn-sm align-self-center" do %>
+      <i class="fa fa-plus"></i>
+    <% end %> 
   </div>
 </div>
 <div class="table-responsive">
@@ -8,10 +11,7 @@
     <thead>
       <tr>
         <th><%= @book_types.model.human_attribute_name(:description) %></th>
-        <th>
-          <%= link_to new_admins_backoffice_book_type_path, class:"btn btn-success btn-circle btn-sm" do %>
-            <i class="fa fa-plus"></i>
-          <% end %>                
+        <th>               
         </th>
       </tr>
     </thead>
