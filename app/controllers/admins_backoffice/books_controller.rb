@@ -10,7 +10,7 @@ class AdminsBackoffice::BooksController < AdminsBackofficeController
       :publisher,
       :authors,
       :subjects
-    ).order(:title).page(params[:page])
+    ).order(:title)
   end
 
   def new

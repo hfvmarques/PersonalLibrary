@@ -4,7 +4,7 @@ class AdminsBackoffice::PublishersController < AdminsBackofficeController
   before_action :set_publisher, only: %i[edit update destroy]
 
   def index
-    @publishers = Publisher.all.order(:description).page(params[:page])
+    @publishers = Publisher.all.order(:description)
   end
 
   def new

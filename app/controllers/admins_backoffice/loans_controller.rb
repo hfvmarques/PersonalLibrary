@@ -5,7 +5,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
   before_action :all_books, only: %i[new edit]
 
   def index
-    @loans = Loan.includes(:book).order(:loaned_at).page(params[:page])
+    @loans = Loan.includes(:book).order(:loaned_at)
   end
 
   def new

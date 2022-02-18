@@ -4,7 +4,7 @@ class AdminsBackoffice::BookTypesController < AdminsBackofficeController
   before_action :set_book_type, only: %i[edit update destroy]
 
   def index
-    @book_types = BookType.all.order(:description).page(params[:page])
+    @book_types = BookType.all.order(:description)
   end
 
   def new
