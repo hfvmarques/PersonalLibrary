@@ -191,5 +191,15 @@
         });
       </script>
     <% end %>
+    <%= javascript_tag do %>
+      $(function() {
+        $('.datepicker').datepicker({
+          todayBtn: 'linked',
+          autoclose: true,
+          todayHighlight: true,
+          format: 'dd/mm/yyyy'
+        });
+      });
+    <% end %>    
   </body>
 </html>
