@@ -29,7 +29,7 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   # rubocop:disable Metrics/AbcSize
   def update
-    if check_date?('returned_at(3i)', 'returned_at(2i)', 'returned_at(1i)')
+    if check_date?
       @loan.update(params_loan)
       find_book
       @book.active_loan = false
@@ -66,12 +66,8 @@ class AdminsBackoffice::LoansController < AdminsBackofficeController
 
   private
 
-  def check_date?(day, month, year)
-    return false if params_loan[day].blank?
-
-    return false if params_loan[month].blank?
-
-    return false if params_loan[year].blank?
+  def check_date?
+    return false if params_loan[:returned_at].blank?
 
     true
   end
