@@ -52,7 +52,7 @@
               <% if @book.id? %>
                 <div class="form-group">                
                   <%= form.label :active_loan %>
-                  <%= form.text_field :active_loan, class:"form-control", disabled: true %>
+                  <%= form.text_field :active_loan, value: human_boolean(@book.active_loan), class:"form-control", disabled: true %>
                 </div>
               <% end %>
               <button type="submit" class="btn btn-primary">
