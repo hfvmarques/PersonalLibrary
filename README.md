@@ -1,24 +1,23 @@
-# README
+# Personal Library
+## Aplicação MVC construída em Ruby on Rails para gerenciamento pessoal de livros
+### Versões
+- Ruby 2.7.0
+- Rails 5.2.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Produção
+A aplicação roda no endereço https://biblioteca-pessoal.herokuapp.com/
 
-Things you may want to cover:
+### Desenvolvimento
+Clonar o repositório
 
-* Ruby version
+Atualmente a aplicação roda localmente em um container do docker.
 
-* System dependencies
+Para _buildar_, entrar na pasta principal da aplicação e rodar o comando `docker-compose build`
 
-* Configuration
+Em seguida, para rodá-la, executar `docker-compose up`, ou, se preferir continuar tendo acesso ao terminal com a aplicação rodando em segundo plano, `docker-compose up -d`
 
-* Database creation
+Ela estará funcionando em `http://localhost:3000`
 
-* Database initialization
+Para rodar os testes, executar o comando `docker-compose exec app bin/rspec`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Para rodar o _linter_, executar o comando `docker-compose exec app bundle exec rubocop`
