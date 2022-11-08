@@ -1,13 +1,18 @@
 # Personal Library
+
 ## Aplicação MVC construída em Ruby on Rails para gerenciamento pessoal de livros
+
 ### Versões
-- Ruby 2.7.0
+
+- Ruby 3.0.4
 - Rails 5.2.0
 
 ### Produção
+
 A aplicação roda no endereço https://biblioteca-pessoal.herokuapp.com/
 
 ### Desenvolvimento
+
 Clonar o repositório
 
 Atualmente a aplicação roda localmente em um container do docker.
