@@ -12,8 +12,8 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :edition, presence: true
   validates :published_at, presence: true
-  validates :authors, length: { minimum: 1, message: 'Should have at least 1 author defined.'}
-  validates :subjects, length: { minimum: 1, message: 'Should have at least 1 subject defined.'}
+  validates :authors, length: { minimum: 1, message: 'Should have at least 1 author defined.' }
+  validates :subjects, length: { minimum: 1, message: 'Should have at least 1 subject defined.' }
 
   scope :search_subject, lambda { |term|
     include_attributes.joins(:subjects).where(

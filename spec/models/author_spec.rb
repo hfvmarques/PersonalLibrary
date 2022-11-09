@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Author, type: :model do
   subject(:author) { build(:author, description: description) }
+
   let(:description) { 'Autor X' }
 
   it { is_expected.to be_valid }

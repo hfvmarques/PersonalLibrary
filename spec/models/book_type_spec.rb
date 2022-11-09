@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BookType, type: :model do
   subject(:book_type) { build(:book_type, description: description) }
+
   let(:description) { 'Tipo X' }
 
   it { is_expected.to be_valid }
