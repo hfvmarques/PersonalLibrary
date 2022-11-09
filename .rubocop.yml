@@ -1,17 +1,29 @@
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
+  TargetRubyVersion: 2.7
   NewCops: enable
   Exclude:
-    - "spec/**/*.rb"
-    - "node_modules/**/*"
-    - "tmp/**/*"
-    - "vendor/**/*"
-    - ".git/**/*"
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - 'spec/*'
+    - 'config.ru'
+    - 'app/views/**/*'
+    - 'Rakefile'
 
 Style/Encoding:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
 Metrics/MethodLength:
   Max: 15
@@ -31,8 +43,8 @@ Rails/HasAndBelongsToMany:
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
-  Enabled: false
-
 Rails/FilePath:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
