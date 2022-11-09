@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,81 +10,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# rubocop:disable Metrics/BlockLength
-# rubocop:disable Style/NumericLiterals
 ActiveRecord::Schema.define(version: 2022_01_19_180151) do
-  create_table 'admins', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_admins_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_admins_on_reset_password_token', unique: true
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table 'authors', force: :cascade do |t|
-    t.string 'description', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "authors", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'authors_books', id: false, force: :cascade do |t|
-    t.integer 'book_id'
-    t.integer 'author_id'
-    t.index ['author_id'], name: 'index_authors_books_on_author_id'
-    t.index ['book_id'], name: 'index_authors_books_on_book_id'
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "author_id"
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
 
-  create_table 'book_types', force: :cascade do |t|
-    t.string 'description', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "book_types", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'books', force: :cascade do |t|
-    t.string 'title'
-    t.integer 'publisher_id'
-    t.integer 'published_at'
-    t.integer 'edition'
-    t.integer 'book_type_id'
-    t.boolean 'active_loan', default: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['book_type_id'], name: 'index_books_on_book_type_id'
-    t.index ['publisher_id'], name: 'index_books_on_publisher_id'
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.integer "publisher_id"
+    t.integer "published_at"
+    t.integer "edition"
+    t.integer "book_type_id"
+    t.boolean "active_loan", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_type_id"], name: "index_books_on_book_type_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
-  create_table 'books_subjects', id: false, force: :cascade do |t|
-    t.integer 'book_id'
-    t.integer 'subject_id'
-    t.index ['book_id'], name: 'index_books_subjects_on_book_id'
-    t.index ['subject_id'], name: 'index_books_subjects_on_subject_id'
+  create_table "books_subjects", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "subject_id"
+    t.index ["book_id"], name: "index_books_subjects_on_book_id"
+    t.index ["subject_id"], name: "index_books_subjects_on_subject_id"
   end
 
-  create_table 'loans', force: :cascade do |t|
-    t.integer 'book_id'
-    t.string 'description', null: false
-    t.datetime 'loaned_at'
-    t.datetime 'returned_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['book_id'], name: 'index_loans_on_book_id'
+  create_table "loans", force: :cascade do |t|
+    t.integer "book_id"
+    t.string "description", null: false
+    t.datetime "loaned_at"
+    t.datetime "returned_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_loans_on_book_id"
   end
 
-  create_table 'publishers', force: :cascade do |t|
-    t.string 'description', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "publishers", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'subjects', force: :cascade do |t|
-    t.string 'description', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "subjects", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
 end
-# rubocop:enable Metrics/BlockLength
-# rubocop:enable Style/NumericLiterals

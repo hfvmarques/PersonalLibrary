@@ -93,10 +93,10 @@ namespace :dev do
         published_at: rand(1900..2022),
         edition: rand(1..30),
         book_type: BookType.all.sample,
-        active_loan: false
+        active_loan: false,
+        subjects: Subject.all.sample(rand(1..3)),
+        authors: Author.all.sample(rand(1..3))
       )
-      b.subjects << Subject.all.sample(rand(1..3))
-      b.authors << Author.all.sample(rand(1..3))
     end
   end
 
