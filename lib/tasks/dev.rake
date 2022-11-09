@@ -86,8 +86,8 @@ namespace :dev do
   # rubocop:disable Lint/ShadowedArgument
   desc 'Cadastrando Livros'
   task add_books: :environment do
-    50.times do |b|
-      b = Book.create!(
+    50.times do
+      Book.create!(
         title: Faker::Book.title,
         publisher: Publisher.all.sample,
         published_at: rand(1900..2022),

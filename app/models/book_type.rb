@@ -3,5 +3,5 @@
 class BookType < ApplicationRecord
   has_many :books
 
-  validates_presence_of :description
+  validates :description, presence: true
 end
