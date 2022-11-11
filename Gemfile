@@ -85,10 +85,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-
-  gem 'simplecov', '~> 0.21.2', require: false
-  gem 'simplecov-cobertura', '~> 1.4'
-  gem 'simplecov-json', '~> 0.2.3'
 end
 
 group :production do
